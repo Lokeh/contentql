@@ -1,6 +1,6 @@
 (defproject lilactown/contentql "0.1.2"
   :description "Access to Contentful content using Om Next Queries"
-  :url "https://github.com/luchiniatwork/contentql"
+  :url "https://github.com/Lokeh/contentql/tree/lilactown"
   :license {:name "MIT License"
             :url "https://opensource.org/licenses/MIT"}
 
