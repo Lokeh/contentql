@@ -16,6 +16,8 @@
                  [org.clojure/tools.namespace "0.2.11"]
                  [io.nervous/kvlt "0.1.4"]]
 
+  :npm {:devDependencies [[ws "5.1.1"]]}
+
   :plugins [[lein-cljsbuild "1.1.6"]
             [lein-environ "1.1.0"]]
 
@@ -46,6 +48,18 @@
                            :output-dir "resources/public/js/compiled/out"
                            :source-map-timestamp true}}
 
+               {:id "node-app"
+                :source-paths ["src/cljs" "src/cljc" "dev"]
+
+                :figwheel {:on-jsload "contentql.system/reset"
+                           :build-id "node-app"}
+
+                :compiler {:main cljs.user
+                           :target :nodejs
+                           :output-to "target/nodejs/app/index.js"
+                           :output-dir "target/nodejs/app"
+                           :source-map-timestamp true}}
+
                {:id "test"
                 :source-paths ["src/cljs" "test/cljs" "src/cljc" "test/cljc"]
                 :compiler {:output-to "resources/public/js/compiled/testable.js"
@@ -69,7 +83,7 @@
                              [com.cemerick/piggieback "0.2.2"]
                              [org.clojure/tools.nrepl "0.2.13"]
                              [reloaded.repl "0.2.3"]]
-              :plugins [[lein-figwheel "0.5.10"]]
+              :plugins [[lein-figwheel "0.5.13"]]
               :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}
 
              :uberjar
