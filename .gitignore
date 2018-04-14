@@ -13,3 +13,7 @@
 figwheel_server.log
 pom.xml
 pom.xml.asc
+package.json
+package-lock.json
+node_modules
+.cljs_node_repl
