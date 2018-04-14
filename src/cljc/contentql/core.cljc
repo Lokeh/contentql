@@ -8,7 +8,8 @@
                  [clojure.core.async :refer [<! >! chan go]]
                  [cheshire.core :as json]]
                 :cljs
-                [[cljs-http.client :as http]
+                [;; [cljs-http.client :as http]
+                 [kvlt.chan]
                  [goog.math :as math]
                  [cljs.core.async :refer [<!] :as async]])))
 
@@ -226,11 +227,16 @@
      ;; cljs-http does not understand it as a json and, correctly, does not parse the body.
      ;; A more elegant approach would be to extend cljs-http to support a new wrapper for
      ;; this specifc content-type but this seemed like an overkill
-     (go (let [res (<! (http/get url {:with-credentials? false}))]
+     (go (let [res (<! (kvlt.chan/request! {:url url
+                                            :method :get
+                                            :as :json})
+                    ;; (http/get url {:with-credentials? false})
+                       )]
+           ;; (println res)
            (as-> res x
              (:body x)
-             (.parse js/JSON x)
-             (js->clj x :keywordize-keys true))))
+             (js->clj x :keywordize-keys true))
+           ))
      :clj
      (let [c (chan)]
        (go (>! c (-> url

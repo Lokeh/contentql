@@ -13,7 +13,8 @@
                  [org.clojure/clojurescript "1.9.908" :scope "provided"]
                  [org.clojure/core.async "0.3.443"]
                  [org.omcljs/om "1.0.0-beta1"]
-                 [org.clojure/tools.namespace "0.2.11"]]
+                 [org.clojure/tools.namespace "0.2.11"]
+                 [io.nervous/kvlt "0.1.4"]]
 
   :plugins [[lein-cljsbuild "1.1.6"]
             [lein-environ "1.1.0"]]
