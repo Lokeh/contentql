@@ -222,17 +222,9 @@
   "Retrieves response body from Contentful's API response."
   [url]
   #?(:cljs
-     ;; This manual casting of the body is needed because Contentful returns content-type
-     ;; application/vnd.contentful.delivery.v1+json instead of application/json and
-     ;; cljs-http does not understand it as a json and, correctly, does not parse the body.
-     ;; A more elegant approach would be to extend cljs-http to support a new wrapper for
-     ;; this specifc content-type but this seemed like an overkill
-     (go (let [res (<! (kvlt.chan/request! {:url url
+    (go (let [res (<! (kvlt.chan/request! {:url url
                                             :method :get
-                                            :as :json})
-                    ;; (http/get url {:with-credentials? false})
-                       )]
-           ;; (println res)
+                                            :as :json}))]
            (as-> res x
              (:body x)
              (js->clj x :keywordize-keys true))
