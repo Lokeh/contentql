@@ -1,4 +1,4 @@
-(defproject lilactown/contentql "0.1.2"
+(defproject lilactown/contentql "0.1.3-SNAPSHOT"
   :description "Access to Contentful content using Om Next Queries"
   :url "https://github.com/Lokeh/contentql/tree/lilactown"
   :license {:name "MIT License"
@@ -29,7 +29,7 @@
 
   :clean-targets ^{:protect false} [:target-path :compile-path "resources/public/js"]
 
-  :uberjar-name "contentql.jar"
+  ;; :uberjar-name "contentql.jar"
 
   ;; nREPL by default starts in the :main namespace, we want to start in `user`
   ;; because that's where our development helper functions like (go) and
